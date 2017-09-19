@@ -28,17 +28,15 @@ void swap(int & a, int & b){
     a -= b;
 }
 
-void reverse(int a[], int left, int right){
+void reverse(int a[], int left, int right) {
     if (left >= right || right >= MATRIX_SIZE) return;
 
-    for (int i = left, j = right; i < j; i++, j--)
-    {
+    for (int i = left, j = right; i < j; i++, j--) {
         swap(a[i], a[j]);
     }
 }
 
-void rotate(int a[], int shift)
-{
+void shift_row(int * a, int shift) {
     if (shift < 0){
         while (abs(shift) >= MATRIX_SIZE){
             shift = -abs(shift) % MATRIX_SIZE;
@@ -52,10 +50,6 @@ void rotate(int a[], int shift)
     reverse(a, 0, shift - 1);
     reverse(a, shift, MATRIX_SIZE - 1);
     reverse(a, 0, MATRIX_SIZE - 1);
-}
-
-void shift_row(int *row, int shift){
-    rotate(row, shift);
 }
 
 void shift_col(int col, int shift){

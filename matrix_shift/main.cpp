@@ -44,8 +44,11 @@ void shift_row(int * a, int shift) {
         shift += MATRIX_SIZE;
     }
 
-    if (shift > MATRIX_SIZE) {
+    if (shift >= MATRIX_SIZE) {
         shift = shift % MATRIX_SIZE;
+    }
+    if (0 == shift){
+        return;
     }
     reverse(a, 0, shift - 1);
     reverse(a, shift, MATRIX_SIZE - 1);
@@ -65,7 +68,7 @@ void shift_col(int col, int shift){
 }
 
 int main(int argc, const char * argv[]) {
-    shift_col(0, 3);
+    shift_row(0, 8);
     for (int i = 0; i != MATRIX_SIZE; ++i){
         for (int j = 0; j != MATRIX_SIZE; ++j){
             cout << matrix[i][j] << ' ';

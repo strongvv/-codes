@@ -9,7 +9,9 @@
 #include <iostream>
 using namespace std;
 
-int matrix[8][8] = {
+const int MATRIX_SIZE = 8;
+
+int matrix[MATRIX_SIZE][MATRIX_SIZE] = {
         {0, 1, 2, 3, 2, 1, 0, 4},
         {1, 2, 3, 4, 5, 6, 7 ,8},
         {8, 7, 6, 5, 4, 3, 2, 1},
@@ -19,8 +21,6 @@ int matrix[8][8] = {
         {5, 1, 1, 2, 4, 5, 6, 3},
         {3, 4, 7, 2, 5, 1, 8, 7}
 };
-
-const int MATRIX_SIZE = 8;
 
 void swap(int & a, int & b){
     a += b;
@@ -47,7 +47,7 @@ void rotate(int a[], int shift)
     }
 
     if (shift > MATRIX_SIZE) {
-        shift = shift % 8;
+        shift = shift % MATRIX_SIZE;
     }
     reverse(a, 0, shift - 1);
     reverse(a, shift, MATRIX_SIZE - 1);
@@ -60,7 +60,7 @@ void shift_row(int *row, int shift){
 
 void shift_col(int col, int shift){
     shift *= -1;
-    int temp[8] = {};
+    int temp[MATRIX_SIZE] = {};
     for (int i = 0; i != MATRIX_SIZE; ++i){
         temp[i] = matrix[i][col];
     }
@@ -72,8 +72,8 @@ void shift_col(int col, int shift){
 
 int main(int argc, const char * argv[]) {
     shift_col(0, 3);
-    for (int i = 0; i != 8; ++i){
-        for (int j = 0; j != 8; ++j){
+    for (int i = 0; i != MATRIX_SIZE; ++i){
+        for (int j = 0; j != MATRIX_SIZE; ++j){
             cout << matrix[i][j] << ' ';
         }
         cout << endl;
